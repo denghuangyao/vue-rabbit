@@ -6,6 +6,7 @@
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
 
     "paths": {
+      //只做联想提示
       "@/*": ["./src/*"]
     }
   }

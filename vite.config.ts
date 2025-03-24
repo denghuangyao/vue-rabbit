@@ -2,7 +2,7 @@ import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-// import vueDevTools from 'vite-plugin-vue-devtools'
+import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 import AutoImport from 'unplugin-auto-import/vite'
@@ -12,7 +12,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 export default defineConfig({
   plugins: [
     vue(),
-    // vueDevTools(),
+    vueDevTools(),
     // ...
     AutoImport({
       resolvers: [ElementPlusResolver()],
@@ -31,15 +31,18 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      //实际路径配置 @->src
+      //实际的路径转换 @->src
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
   css: {
     preprocessorOptions: {
       scss: {
-         // 2.自动导入定制化样式文件进行样式覆盖
-        additionalData: `@use "@/styles/element/index.scss" as *;`,
+         // 2.自动导入定制化样式文件进行样式覆盖 + //自动导入scss文件
+        additionalData: `
+          @use "@/styles/element/index.scss" as *;
+          @use "@/styles/var.scss" as *;
+        `
       },
     },
   },
