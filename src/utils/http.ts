@@ -9,7 +9,10 @@ axios.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 axios.interceptors.response.use(
-  (response) => response.data,
+  (response) => {
+    console.log("response-",response)
+    return response.data
+  },
   (error) => Promise.reject(error)
 );
 export default httpInstance;
