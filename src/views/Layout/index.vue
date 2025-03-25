@@ -14,8 +14,8 @@
     <LayoutFixed />
     <LayoutNav />
     <LayoutHeader />
-    <LayoutFooter />
     <RouterView />
+    <LayoutFooter />
 </template>
 <style lang="scss" scoped>
 

@@ -1,26 +1,6 @@
 <script lang="ts" setup>
-// import {onMounted, reactive} from "vue"
-// import { getCategoryAPI } from "@/apis/layout";
 import {useCategoryStore} from "@/store/category";
 let { categoryList } = useCategoryStore();
-// type Category = {
-//   id:number,
-//   name:string
-// }
-// let categoryList = <Category[]>reactive([]);
-// const getCategory = async ()=>{
-//   let res:any = await getCategoryAPI();
-//   console.log("-getCategory-res-",res)
-//   res.data.result.forEach((category:any) => {
-//     categoryList.push({
-//         id:category.id,
-//         name:category.name
-//       })
-//     });
-// }
-// onMounted(()=>{
-//   getCategory();
-// })
 </script>
 <template>
     <header class='app-header'>
