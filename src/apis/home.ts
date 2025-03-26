@@ -1,29 +1,21 @@
 import httpInstance from "@/utils/http";
-import {type Category} from "@/apis/layout"
-export interface Banner{
-    id:string
-    imgUrl:string
-}
-export interface Hot{
-    id:string 
-    picture:string 
-    title:string
-}
-export interface New{
-    id:string,
-    name:string,
-    price:string,
-    picture:string
-}
-export interface Product extends Category{
-    saleInfo:string
-}
+import {
+    type Category,
+    type Banner,
+    type New,
+    type Hot,
+    type Product
+} from "@/types"
+
 /**
  * 获取轮播图数据
  */
-export function getBannerAPI(){
+export function getBannerAPI(distributionSite:string="1"){
     return httpInstance<Banner[]>({
-        url:"/home/banner"
+        url:"/home/banner",
+        params:{
+            distributionSite
+        }
     })
 }
 export function getNewAPI(){

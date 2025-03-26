@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { reactive } from "vue";
-import { getCategoryAPI,type Category } from "@/apis/layout";
+import { getCategoryAPI } from "@/apis/layout";
+import { type Category } from "@/types"
 export const useCategoryStore = defineStore('category',()=>{
     //state 导航列表数据
     let categoryList = <Category[]>reactive([]);

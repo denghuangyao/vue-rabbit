@@ -2,8 +2,9 @@
 import HomePanel from './HomePanel.vue'
 import GoodsItem from "./GoodsItem.vue"
 import { getProductAPI } from "@/apis/home"
+import { type Product } from "@/types"
 import { ref,onMounted } from "vue";
-let goodsProduct = ref([]);
+let goodsProduct = ref<Product[]>([]);
 const getProduct = async()=>{
     let { result } = await getProductAPI();
     goodsProduct.value = result;

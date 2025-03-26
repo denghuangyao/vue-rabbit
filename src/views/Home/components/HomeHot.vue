@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref,onMounted } from "vue";
 import HomePanel from './HomePanel.vue';
-import { getHotAPI,type Hot } from "@/apis/home"
+import { getHotAPI } from "@/apis/home"
+import { type Hot } from "@/types";
 let hotList = ref<Hot[]>([]);
 const getHot = async ()=>{
     let res = await getHotAPI();

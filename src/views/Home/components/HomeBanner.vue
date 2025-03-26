@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { getBannerAPI,type Banner } from '@/apis/home';
+import { getBannerAPI } from '@/apis/home';
+import { type Banner } from "@/types";
 import { onMounted, ref } from 'vue';
 let imgList = ref<Banner[]>([])
 const getBanner = async()=>{

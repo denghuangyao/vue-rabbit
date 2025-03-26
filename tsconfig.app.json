@@ -4,10 +4,16 @@
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-
+    "baseUrl": "./",  // 这里需要配置
     "paths": {
       //只做联想提示
       "@/*": ["./src/*"]
-    }
+    },
+    // 如果baseUrl设置为'src',那paths就应该配置为{"@/*": "./*"},如下：
+    // "baseUrl": "src",
+    // "paths": {
+    //  "@/*": ["./*"]
+    // }
+    // "allowJs": true  //编译时允许有js
   }
 }

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import HomePanel from './HomePanel.vue';
-import { getNewAPI,type New } from "@/apis/home"
+import { getNewAPI } from "@/apis/home"
+import { type New } from "@/types"
 import {ref,onMounted} from "vue";
 let newList = ref<New[]>([]);
 const getNew = async()=>{

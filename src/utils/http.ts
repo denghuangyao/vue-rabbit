@@ -15,7 +15,7 @@ httpInstance.interceptors.request.use(
 );
 httpInstance.interceptors.response.use(
   (response) => {
-    console.log("response-",response)
+    // console.log("response-",response)
     return response//response.data
   },
   (error) => Promise.reject(error)

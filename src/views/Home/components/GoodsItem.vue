@@ -1,23 +1,28 @@
 <script setup lang="ts">
-    defineProps({
-        good:{
-            type:Object,
-            default:()=>{}
-        }
-    })
+import { withDefaults } from "vue"
+import { type CategoryGoods } from "@/types"
+withDefaults(defineProps<{good?:CategoryGoods}>(),{
+  good:()=>({
+    name:"",
+    picture:"",
+    desc:"",
+    price:"",
+    id:""
+  })
+})
 </script>
 <template>
     <RouterLink to="/" class="goods-item">
         <img v-img-lazy="good.picture" alt="" />
         <p class="name ellipsis">{{ good.name }}</p>
-        <p class="desc ellipsis">{{ good.desc }}</p>
+        <p class="desc ellipsis">{{ good.desc||"" }}</p>
         <p class="price">&yen;{{ good.price }}</p>
     </RouterLink>
 </template>
 <style lang="scss" scoped>
     .goods-item {
       display: block;
-      width: 100%;
+      width: 220px;
       padding: 20px 30px;
       text-align: center;
       transition: all .5s;
