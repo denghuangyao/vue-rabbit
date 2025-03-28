@@ -36,7 +36,7 @@ const { categoryData } = useCategory();
         <h3>全部分类</h3>
         <ul>
           <li v-for="i in categoryData?.children" :key="i.id">
-            <RouterLink to="/">
+            <RouterLink :to="`/category/sub/${i.id}`">
               <img :src="i.picture" />
               <p>{{ i.name }}</p>
             </RouterLink>
@@ -48,7 +48,7 @@ const { categoryData } = useCategory();
           <h3>- {{ item.name }}-</h3>
         </div>
         <div class="body">
-          <GoodsItem v-for="good in item.goods" :good="good" :key="good.id" />
+          <GoodsItem v-for="goods in item.goods" :goods="goods" :key="goods.id" />
         </div>
       </div>
     </div>

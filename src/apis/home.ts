@@ -1,11 +1,5 @@
 import httpInstance from "@/utils/http";
-import {
-    type Category,
-    type Banner,
-    type New,
-    type Hot,
-    type Product
-} from "@/types"
+import type { Banner,New,Hot,Product } from "@/types"
 
 /**
  * 获取轮播图数据
