@@ -9,7 +9,10 @@ const getDetail = async ()=>{
   let { result } = await getDetailAPI(route.params.id);
   result.categories.sort((a,b) => a.layer - b.layer);
   Object.assign(goodsData,result)
-  console.log("--getDetail-goodsData-",goodsData)
+  // console.log("--getDetail-goodsData-",goodsData)
+}
+const getSkuData = (data)=>{
+  console.log("-getSkuData-data-",data);
 }
 onMounted(()=>{
   getDetail();
@@ -35,7 +38,7 @@ onMounted(()=>{
           <div class="goods-info">
             <div class="media">
               <!-- 图片预览区 -->
-
+              <XtxImageView :imageList="goodsData.mainPictures"/>
               <!-- 统计数量 -->
               <ul class="goods-sales">
                 <li>
@@ -84,7 +87,7 @@ onMounted(()=>{
                 </dl>
               </div>
               <!-- sku组件 -->
-
+              <XtxSku :goods="{specs:goodsData.specs,skus:goodsData.skus}" @change="getSkuData"/>
               <!-- 数据组件 -->
 
               <!-- 按钮组件 -->
@@ -119,11 +122,11 @@ onMounted(()=>{
             <!-- 24热榜+专题推荐 -->
             <div class="goods-aside">
               <!-- 24小时热榜 -->
-              <DetailHot :type="1"/>
+              <DetailHot :hotType="1"/>
               <!-- 周热销榜 -->
-              <DetailHot :type="2"/>
+              <DetailHot :hotType="2"/>
               <!-- 总热销榜 -->
-              <DetailHot :type="3"/>
+              <DetailHot :hotType="3"/>
             </div>
           </div>
         </div>

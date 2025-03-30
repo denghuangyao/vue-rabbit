@@ -6,9 +6,11 @@ import App from './App.vue'
 import "@/styles/common.scss";
 import router from '@/router';
 import { imgLazyPlugin } from "@/directives"
+import componentPlugin from "@/components"
 /* 创建pinia */
 const pinia = createPinia()
 const app = createApp(App);
+app.use(componentPlugin)
 app.use(imgLazyPlugin)
 app.use(router);
 app.use(pinia);/* 使用插件 */

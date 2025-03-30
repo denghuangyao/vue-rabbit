@@ -1,3 +1,4 @@
+import type { CategoryGoods } from "@/types";
 import httpInstance from "@/utils/http";
 export function getDetailAPI(id:any){
     return httpInstance({
@@ -12,13 +13,13 @@ export function getDetailAPI(id:any){
  * @param {Number} limit - 获取个数
  */
 type HotReq = {
-    id:number
+    id:string|string[]
     type:number
-    limit:number
+    limit?:number
 }
 export function getHotGoodsAPI({id,type,limit=3}:HotReq){
-    console.log("-getHotGoodsAPI-",id,type,limit)
-    return httpInstance({
+    // console.log("-getHotGoodsAPI-",id,type,limit)
+    return httpInstance<CategoryGoods[]>({
         url:"/goods/hot",
         params:{id,type,limit}
     })
