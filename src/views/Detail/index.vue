@@ -1,18 +1,48 @@
-<script setup>
-import { onMounted, reactive } from "vue";
+<script setup lang="ts">
+import { onMounted, reactive,ref } from "vue";
 import { getDetailAPI } from "@/apis/detail"
 import {useRoute} from "vue-router"
 import DetailHot from "./components/DetailHot.vue";
-let goodsData = reactive({})
+import useCartStore from "@/store/cart"
+import type { Cart } from "@/types"
+import { ElMessage } from "element-plus"
+
+let goodsData = reactive<any>({})
 let route = useRoute();
 const getDetail = async ()=>{
-  let { result } = await getDetailAPI(route.params.id);
-  result.categories.sort((a,b) => a.layer - b.layer);
+  let { result }:any = await getDetailAPI(route.params.id);
+  result.categories.sort((a:any,b:any) => a.layer - b.layer);
   Object.assign(goodsData,result)
   // console.log("--getDetail-goodsData-",goodsData)
 }
-const getSkuData = (data)=>{
+let skuObj:any = reactive({}),count = ref(0);
+const getSkuData = (data:any)=>{
   console.log("-getSkuData-data-",data);
+  Object.assign(skuObj,data);
+}
+const countChange = (count:number)=>{
+  
+}
+const cartStore = useCartStore();
+const addCart = ()=>{
+  if(skuObj.skuId){
+    let cart:Cart = {
+      id:goodsData.id,
+      name:goodsData.name,
+      price:goodsData.price,
+      picture:goodsData?.mainPictures?.[0],
+      count:count.value,
+      skuId:skuObj.skuId,
+      attrsText:skuObj.specsText,
+      selected:true
+    }
+    cartStore.addCart(cart);
+  }else{
+    ElMessage({
+      type:"warning",
+      message:"请选择规格"
+    })
+  }
 }
 onMounted(()=>{
   getDetail();
@@ -89,10 +119,10 @@ onMounted(()=>{
               <!-- sku组件 -->
               <XtxSku :goods="{specs:goodsData.specs,skus:goodsData.skus}" @change="getSkuData"/>
               <!-- 数据组件 -->
-
+              <el-input-number v-model="count" :min="1" :max="10" @change="countChange" />
               <!-- 按钮组件 -->
               <div>
-                <el-button size="large" class="btn">
+                <el-button size="large" class="btn" @click="addCart">
                   加入购物车
                 </el-button>
               </div>

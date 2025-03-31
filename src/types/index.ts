@@ -50,3 +50,14 @@ export type LoginData = {
 export interface User {
     token?:string
 }
+/**购物车列表显示数据 */
+export interface Cart{
+    id:string,//商品id
+    name:string,//商品名称
+    price:string,//价格
+    picture:string,//商品图片
+    count:number,//商品数量
+    skuId:string|number,
+    attrsText:string,//商品规格
+    selected:true//商品是否选中
+}
