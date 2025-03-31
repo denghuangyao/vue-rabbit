@@ -43,3 +43,10 @@ export interface Product extends Category{
     picture:string
     saleInfo:string
 }
+export type LoginData = {
+    account:string,
+    password:string
+}
+export interface User {
+    token?:string
+}

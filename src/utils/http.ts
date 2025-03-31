@@ -1,5 +1,7 @@
 import axios,{type AxiosRequestConfig,type AxiosResponse} from "axios";
-type Response<T> = {
+import { ElMessage } from "element-plus";
+import useUserStore from "@/store/user";
+type ApiResponse<T = any> = {
   msg:string,
   code:string,
   result:T
@@ -10,23 +12,43 @@ const httpInstance = axios.create({
 });
 //拦截器
 httpInstance.interceptors.request.use(
-  (config) => config,
-  (error) => Promise.reject(error)
+  (config) => {
+    const userStore = useUserStore();
+    const token = userStore.userInfo.token
+    if (token) {
+      config.headers["Authorization"]=`Bearer ${token}`
+    }
+    return config
+  },
+  (error) => {
+    console.log("-request-error",error)
+    return Promise.reject(error)
+  }
 );
 httpInstance.interceptors.response.use(
-  (response) => {
+  (response:AxiosResponse<ApiResponse>) => {
     // console.log("response-",response)
-    return response//response.data
+    return response
+    // return response.data
   },
-  (error) => Promise.reject(error)
+  (error:any) => {
+    console.log("response-error-",error,error.response.data.message)
+    ElMessage.error(error.response.data.message);
+    // Promise.reject(error);
+  }
 );
 // export default httpInstance;
 export default <T>(config:AxiosRequestConfig)=>{
-  return new Promise<Response<T>>((resolve,reject)=>{
-    httpInstance.request<Response<T>>(config).then((response)=>{
-      resolve(response.data)
+  return new Promise<ApiResponse<T>>((resolve,reject)=>{
+    httpInstance.request<ApiResponse<T>>(config).then((response:AxiosResponse<ApiResponse<T>>)=>{
       // console.log("-response-dhy11-",response)
+      if(response){
+        resolve(response.data)
+      }else{
+        reject()
+      }
     }).catch(error=>{
+      console.log("-response-dhy11-error",error)
       reject(error)
     })
   })
