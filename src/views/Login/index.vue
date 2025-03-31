@@ -3,6 +3,10 @@ import {reactive,ref} from "vue"
 import type { LoginData } from "@/types";
 import type { FormRules,FormInstance } from 'element-plus';
 import useUserStore from "@/store/user";
+import { useRouter } from "vue-router";
+import { ElMessage } from "element-plus"
+import 'element-plus/theme-chalk/el-message.css'
+const router = useRouter();
 type RuleForm = LoginData & {
     agree:boolean
 }
@@ -32,8 +36,10 @@ const doLogin = async ()=>{
     await formRef.value?.validate(async (valid:boolean) => {
         if (valid) {
             let {account,password} = form;
-            await userStore.doLogin(account,password);
+            await userStore.getUserInfo(account,password);
             formRef.value?.resetFields();
+            ElMessage({ type: "success", message: "登录成功" });
+            router.replace("/");
 
         } 
     })
