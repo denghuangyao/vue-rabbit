@@ -8,7 +8,7 @@ export const useCategoryStore = defineStore('category',()=>{
     //action 获取导航数据方法
     const getCategory = async ()=>{
         let res = await getCategoryAPI();
-        console.log("-getCategory-",res);
+        // console.log("-getCategory-",res);
         categoryList.length=0;
         res.result.forEach((category) => {
             categoryList.push({

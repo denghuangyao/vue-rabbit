@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import {useCategoryStore} from '@/store/category'
+    import {useCategoryStore} from '@/store/categoryStore'
     import { useScroll } from '@vueuse/core'
     let { y } = useScroll(window);
     let { categoryList } = useCategoryStore();

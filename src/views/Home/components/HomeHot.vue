@@ -6,7 +6,7 @@ import { type Hot } from "@/types";
 let hotList = ref<Hot[]>([]);
 const getHot = async ()=>{
     let res = await getHotAPI();
-    console.log("-res-getHot-",res)
+    // console.log("-res-getHot-",res)
     hotList.value = res.result;
 }
 onMounted(() => {

@@ -1,8 +1,8 @@
 <script setup>
 import {useRouter} from "vue-router"
-import useUserStore from "@/store/user"
+import useUserStore from "@/store/userStore"
 let {userInfo,clearUserInfo} = useUserStore();
-console.log("--userInfo",userInfo)
+// console.log("--userInfo",userInfo)
 const router = useRouter();
 const logout = ()=>{
   clearUserInfo();

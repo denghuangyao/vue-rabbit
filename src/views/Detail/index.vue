@@ -3,7 +3,7 @@ import { onMounted, reactive,ref } from "vue";
 import { getDetailAPI } from "@/apis/detail"
 import {useRoute} from "vue-router"
 import DetailHot from "./components/DetailHot.vue";
-import useCartStore from "@/store/cart"
+import useCartStore from "@/store/cartStore"
 import type { Cart } from "@/types"
 import { ElMessage } from "element-plus"
 
@@ -17,7 +17,7 @@ const getDetail = async ()=>{
 }
 let skuObj:any = reactive({}),count = ref(0);
 const getSkuData = (data:any)=>{
-  console.log("-getSkuData-data-",data);
+  // console.log("-getSkuData-data-",data);
   Object.assign(skuObj,data);
 }
 const countChange = (count:number)=>{
@@ -37,6 +37,7 @@ const addCart = ()=>{
       selected:true
     }
     cartStore.addCart(cart);
+    ElMessage.success("已添加到购物车")
   }else{
     ElMessage({
       type:"warning",

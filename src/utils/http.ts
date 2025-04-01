@@ -1,7 +1,7 @@
 import axios,{type AxiosRequestConfig,type AxiosResponse} from "axios";
 import { ElMessage } from "element-plus";
 import 'element-plus/theme-chalk/el-message.css'
-import useUserStore from "@/store/user";
+import useUserStore from "@/store/userStore";
 type ApiResponse<T = any> = {
   msg:string,
   code:string,

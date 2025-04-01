@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import HeaderCart from "./HeaderCart.vue"
-import { useCategoryStore } from "@/store/category";
+import { useCategoryStore } from "@/store/categoryStore";
 let { categoryList } = useCategoryStore();
 </script>
 <template>

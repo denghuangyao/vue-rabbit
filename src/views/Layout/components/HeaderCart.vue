@@ -1,18 +1,21 @@
 <script setup>
-import useCartStore from "@/store/cart";
-const { cartList,delCart,totalCount,totalPrice } = useCartStore();
+import useCartStore from "@/store/cartStore";
+//在Pinia是不允许直接解构是会失去响应性的, 解决方案可以使用 storeToRefs
+const cartStore = useCartStore();  
+console.log("storeRefs-cartList-",cartStore);
+
 </script>
 
 <template>
   <div class="cart">
     <a class="curr" href="javascript:;">
-      <i class="iconfont icon-cart"></i><em>{{cartList.length}}</em>
+      <i class="iconfont icon-cart"></i><em>{{cartStore.cartList.length}}</em>
     </a>
     <div class="layer">
       <div class="list">
         
-        <div class="item" v-for="i in cartList" :key="i">
-          <RouterLink to="">
+        <div class="item" v-for="i in cartStore.cartList" :key="i">
+          <RouterLink :to="`/detail/${i.id}`">
             <img :src="i.picture" alt="" />
             <div class="center">
               <p class="name ellipsis-2">
@@ -25,16 +28,16 @@ const { cartList,delCart,totalCount,totalPrice } = useCartStore();
               <p class="count">x{{ i.count }}</p>
             </div>
           </RouterLink>
-          <i class="iconfont icon-close-new" @click="delCart(i.skuId)"></i>
+          <i class="iconfont icon-close-new" @click="cartStore.delCart(i.skuId)"></i>
         </div>
        
       </div>
       <div class="foot">
         <div class="total">
-          <p>共 {{totalCount}} 件商品</p>
-          <p>&yen; {{totalPrice?.toFixed(2)}} </p>
-        </div>
-        <el-button size="large" type="primary" >去购物车结算</el-button>
+          <p>共 {{cartStore.totalCount}} 件商品</p>
+          <p>&yen; {{cartStore.totalPrice?.toFixed(2)}} </p>
+        </div> 
+        <el-button size="large" type="primary" @click="$router.push('/cartlist')">去购物车结算</el-button>
       </div>
     </div>
 </div>

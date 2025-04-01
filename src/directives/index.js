@@ -5,7 +5,6 @@ export const imgLazyPlugin = {
         mounted(el,binding) {
             let {stop} = useIntersectionObserver(el,([{isIntersecting}])=>{
                 if(isIntersecting){
-                    console.log("-isIntersecting-",isIntersecting)
                     el.src = binding.value;
                     stop();
                 }
