@@ -1,5 +1,5 @@
 <script setup>
-import {getPayInfoAPI} from "@/apis/pay"
+import {getOrderAPI} from "@/apis/pay"
 import {useRouter,useRoute} from "vue-router";
 import {ref,onMounted,computed} from "vue"
 const router = useRouter();
@@ -7,7 +7,7 @@ const route = useRoute();
 const orderInfo = ref({});
 //paycack?orderId=xx&payResult=`true|false`;
 const getOrder = async ()=>{
-    let {result} = await getPayInfoAPI(route.query.orderId);
+    let {result} = await getOrderAPI(route.query.orderId);
     orderInfo.value.payMoney = result.payMoney;
 }
 let isSuccess = computed(()=>route.query.payResult==='true')

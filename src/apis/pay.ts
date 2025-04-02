@@ -1,5 +1,5 @@
 import httpInstance from "@/utils/http";
-export const getPayInfoAPI = (id:any)=>{
+export const getOrderAPI = (id:any)=>{
     return httpInstance({
         url:`/member/order/${id}`
     })
