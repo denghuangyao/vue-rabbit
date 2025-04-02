@@ -15,13 +15,29 @@ export default defineConfig({
     vueDevTools(),
     // ...
     AutoImport({
-      resolvers: [ElementPlusResolver()],
+      // 自动导入 Vue 相关函数
+      // imports: ['vue'],
+      resolvers: [
+        //解决引引入非组件方法，自动导入配置增强
+        ElementPlusResolver({
+
+          // 自动导入组件的同时导入对应的方法
+          importStyle: 'sass',
+          // 关键：启用自动导入组件方法
+          directives: true,
+          version: "2.9.6" // 与安装的 Element Plus 版本一致
+        })
+      ],
     }),
     Components({
       resolvers: [
         //1.配置ElementPlus采用sass样式配色系统
             ElementPlusResolver({
               importStyle: "sass",
+              // 自动导入图标组件
+              // ssr: true,
+              // 图标自动导入配置
+              // icons:true
             }),
       ],
     }),

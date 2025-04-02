@@ -5,6 +5,8 @@ import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import App from './App.vue'
 import "@/styles/common.scss";
+// import 'element-plus/theme-chalk/el-loading.css';
+// import 'element-plus/theme-chalk/el-message.css';
 import router from '@/router';
 import { imgLazyPlugin } from "@/directives"
 import componentPlugin from "@/components"

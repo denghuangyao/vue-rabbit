@@ -91,7 +91,7 @@ export default defineStore(
     watch(cartList.value,(newValue:any)=>{
       console.log("-new-cartList改变了",newValue)
     })
-    return { cartList, totalCount, totalPrice,isAllSelected,selectedCount,selectedTotalPrice, addCart, delCart, singleCheck,allCheck,clearCart,updateCart,mergeCart };
+    return { cartList, totalCount, totalPrice,isAllSelected,selectedCount,selectedTotalPrice, addCart, delCart, singleCheck,allCheck,clearCart,updateCart,mergeCart,updateNewList };
   },
   { persist: true }
 );

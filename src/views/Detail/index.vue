@@ -15,13 +15,10 @@ const getDetail = async ()=>{
   Object.assign(goodsData,result)
   // console.log("--getDetail-goodsData-",goodsData)
 }
-let skuObj:any = reactive({}),count = ref(0);
+let skuObj:any = reactive({}),count = ref<number>(1);
 const getSkuData = (data:any)=>{
   // console.log("-getSkuData-data-",data);
   Object.assign(skuObj,data);
-}
-const countChange = (count:number)=>{
-  
 }
 const cartStore = useCartStore();
 const addCart = ()=>{
@@ -120,7 +117,7 @@ onMounted(()=>{
               <!-- sku组件 -->
               <XtxSku :goods="{specs:goodsData.specs,skus:goodsData.skus}" @change="getSkuData"/>
               <!-- 数据组件 -->
-              <el-input-number v-model="count" :min="1" :max="10" @change="countChange" />
+              <el-input-number v-model="count" :min="1" :max="10" />
               <!-- 按钮组件 -->
               <div>
                 <el-button size="large" class="btn" @click="addCart">

@@ -1,11 +1,11 @@
-<script setup lang="ts">
+<script setup >
 import useCartStore from "@/store/cartStore"
 const cartStore = useCartStore();
-const singleCheck = (skuId:any,selected:boolean)=>{
+const singleCheck = (skuId,selected)=>{
   console.log("-singleCheck-",skuId,selected);
   cartStore.singleCheck(skuId,selected);
 }
-const changeAllCheck = (selected:boolean) =>{
+const changeAllCheck = (selected) =>{
   cartStore.allCheck(selected);
 }
 </script>
@@ -31,7 +31,7 @@ const changeAllCheck = (selected:boolean) =>{
           <tbody>
             <tr v-for="i in cartStore.cartList" :key="i.id">
               <td>
-                <el-checkbox :modelValue="i.selected" @change="(selected:boolean)=>singleCheck(i.skuId,selected)"/>
+                <el-checkbox :modelValue="i.selected" @change="(selected)=>singleCheck(i.skuId,selected)"/>
               </td>
               <td>
                 <div class="goods">
@@ -82,7 +82,7 @@ const changeAllCheck = (selected:boolean) =>{
           <span class="red">¥ {{cartStore.selectedTotalPrice.toFixed(2)}}</span>
         </div>
         <div class="total">
-          <el-button size="large" type="primary" >下单结算</el-button>
+          <el-button size="large" type="primary" @click="$router.push('/checkout')">下单结算</el-button>
         </div>
       </div>
     </div>

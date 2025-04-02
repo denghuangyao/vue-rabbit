@@ -1,7 +1,7 @@
 import axios,{type AxiosRequestConfig,type AxiosResponse} from "axios";
-import { ElMessage } from "element-plus";
-import 'element-plus/theme-chalk/el-message.css'
 import useUserStore from "@/store/userStore";
+import { ElMessage } from "element-plus";
+// import 'element-plus/theme-chalk/el-message.css'
 type ApiResponse<T = any> = {
   msg:string,
   code:string,
@@ -34,7 +34,7 @@ httpInstance.interceptors.response.use(
   },
   (error:any) => {
     console.log("response-error-",error,error.response.data.message)
-    ElMessage.error(error.response.data.message);
+    ElMessage.error(error.response.data.message); 
     // Promise.reject(error);
   }
 );

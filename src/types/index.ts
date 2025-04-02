@@ -61,3 +61,15 @@ export interface Cart{
     attrsText:string,//商品规格
     selected:boolean//商品是否选中
 }
+type goods = {
+    skuId:string,
+    count:number
+}
+export type OrderSubimt<T=goods>  = {
+    deliveryTimeType:number;
+    payType:number;
+    payChannel:number;
+    buyerMessage:string;
+    goods:Array<T>[];
+    addressId:string
+}
