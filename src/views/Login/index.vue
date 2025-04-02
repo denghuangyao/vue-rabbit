@@ -4,8 +4,6 @@ import type { LoginData } from "@/types";
 import type { FormRules,FormInstance } from 'element-plus';
 import useUserStore from "@/store/userStore";
 import { useRouter } from "vue-router";
-import { ElMessage } from "element-plus"
-import 'element-plus/theme-chalk/el-message.css'
 const router = useRouter();
 type RuleForm = LoginData & {
     agree:boolean

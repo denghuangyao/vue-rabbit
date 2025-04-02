@@ -18,7 +18,7 @@ export default defineConfig({
       // 自动导入 Vue 相关函数
       // imports: ['vue'],
       resolvers: [
-        //解决引引入非组件方法，自动导入配置增强
+        //解决引入非组件方法ElMessage，自动导入配置增强
         ElementPlusResolver({
 
           // 自动导入组件的同时导入对应的方法

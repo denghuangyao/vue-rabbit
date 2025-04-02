@@ -73,3 +73,8 @@ export type OrderSubimt<T=goods>  = {
     goods:Array<T>[];
     addressId:string
 }
+export type orderQuery = {
+    orderState:number,
+    page:number,
+    pageSize:number
+}

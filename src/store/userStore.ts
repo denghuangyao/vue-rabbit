@@ -1,4 +1,4 @@
-import { loginAPI } from "@/apis/login";
+import { loginAPI } from "@/apis/user";
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import type { User } from "@/types"

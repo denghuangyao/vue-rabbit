@@ -5,8 +5,6 @@ import {useRoute} from "vue-router"
 import DetailHot from "./components/DetailHot.vue";
 import useCartStore from "@/store/cartStore"
 import type { Cart } from "@/types"
-import { ElMessage } from "element-plus"
-
 let goodsData = reactive<any>({})
 let route = useRoute();
 const getDetail = async ()=>{
