@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import dayjs from "dayjs";
 import {ref,onMounted} from "vue"
 import type { orderQuery } from "@/types"
 import { getUserOrderAPI } from "@/apis/order"
@@ -49,6 +50,9 @@ const fomartPayState = (payState:any) => {
     }
     return stateMap[payState]
   }
+  const formatCountDown = (time:any)=>{
+    return time>=0?dayjs.unix(time).format("mm分ss秒"):"已超时";
+  }
 </script>
 
 <template>
@@ -70,7 +74,7 @@ const fomartPayState = (payState:any) => {
               <!-- 未付款，倒计时时间还有 -->
               <span class="down-time" v-if="order.orderState === 1">
                 <i class="iconfont icon-down-time"></i>
-                <b>付款截止: {{order.countdown}}</b>
+                <b>付款截止: {{formatCountDown(order.countdown)}}</b>
               </span>
             </div>
             <div class="body">
