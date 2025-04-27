@@ -7,9 +7,9 @@ export default defineStore(
   "user",
   () => {
     const cartStore = userCartStore();
-    let userInfo = ref<User>({});
+    const userInfo = ref<User>({});
     const getUserInfo = async (account: string, password: string) => {
-      let { result } = await loginAPI({ account, password });
+      const { result } = await loginAPI({ account, password });
       // console.log("-result-", result);
       userInfo.value = result;
       //合并购物车
@@ -21,6 +21,9 @@ export default defineStore(
         cartStore.clearCart();
         // console.log("userInfo", userInfo);
     };
+    const logout = ()=>{
+      userInfo.value = {};
+    }
     return { userInfo, getUserInfo , clearUserInfo };
   },
   {

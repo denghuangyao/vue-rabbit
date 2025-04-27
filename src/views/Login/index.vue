@@ -8,7 +8,7 @@ const router = useRouter();
 type RuleForm = LoginData & {
     agree:boolean
 }
-let form =  reactive<RuleForm>({
+const form =  reactive<RuleForm>({
     account:"",
     password:"",
     agree:false
@@ -20,7 +20,7 @@ const checkAgree = (rule: any, value: any, callback: any)=>{
         callback(new Error('请勾选用户协议'));
     }
 }
-let rules = reactive<FormRules<RuleForm>>({
+const rules = reactive<FormRules<RuleForm>>({
     account: { required: true, message: '用户名不能为空', trigger: 'blur' },
     password:[
         { required: true, message: '密码不能为空', trigger: 'blur' },
@@ -28,12 +28,12 @@ let rules = reactive<FormRules<RuleForm>>({
     ],
     agree:{ validator: checkAgree, trigger: 'blur' }
 });
-let formRef = ref<FormInstance>();
+const formRef = ref<FormInstance>();
 const userStore = useUserStore();
 const doLogin = async ()=>{
     await formRef.value?.validate(async (valid:boolean) => {
         if (valid) {
-            let {account,password} = form;
+            const {account,password} = form;
             await userStore.getUserInfo(account,password);
             formRef.value?.resetFields();
             ElMessage({ type: "success", message: "登录成功" });
@@ -79,7 +79,7 @@ const doLogin = async ()=>{
                   我已同意隐私条款和服务条款
                 </el-checkbox>
               </el-form-item>
-              <el-button @click="doLogin" size="large" class="subBtn">点击登录</el-button>
+              <el-button @click="doLogin" size="large" class="subBtn" v-throttle>点击登录</el-button>
             </el-form>
           </div>
         </div>

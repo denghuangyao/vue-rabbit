@@ -99,7 +99,7 @@ function init(el,value,defaultSrc){
  */
 const loadLazy = options =>({
     created(el,binding){
-        console.log("options--",options)
+        // console.log("options--",options)
         let defaultSrc = options.default
         init(el,binding.value,defaultSrc)
     },

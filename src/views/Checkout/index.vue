@@ -6,19 +6,19 @@ import {getCheckoutInfoAPI,createOrderAPI} from "@/apis/checkout";
 const checkInfo = reactive({}) // 订单对象
 const curAddress = ref({})  // 地址对象
 const checkout = async ()=>{
-    let { result } = await getCheckoutInfoAPI();
+    const { result } = await getCheckoutInfoAPI();
     Object.assign(checkInfo,result);
-    let defaultAddress = result.userAddresses.find(item=>item.isDefault===0);
+    const defaultAddress = result.userAddresses.find(item=>item.isDefault===0);
     curAddress.value = defaultAddress;
 }
 const router = useRouter();
 const cartStore = useCartStore();
 const submitOrder = async ()=>{
-    let req = {
+    const req = {
         goods:checkInfo.goods.map((item)=>({skuId:item.skuId,count:item.count})),
         addressId:curAddress.value.id
     }
-    let {result} = await createOrderAPI(req);
+    const {result} = await createOrderAPI(req);
     router.replace({
         path:"/pay",
         query:{
@@ -138,7 +138,7 @@ onMounted(() => checkout());
         </div>
         <!-- 提交订单 -->
         <div class="submit">
-          <el-button type="primary" size="large" @click="submitOrder">提交订单</el-button>
+          <el-button type="primary" size="large" @click="submitOrder" v-throttle="2000">提交订单</el-button>
         </div>
       </div>
     </div>
