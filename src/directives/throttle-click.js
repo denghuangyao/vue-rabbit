@@ -5,7 +5,7 @@ export default {
     mounted(el,binding){
         let throttleTime = binding.value || 1000;
         let cbFunc=null;
-        el.addEventListener('click',(event)=>{
+        el.addEventListener('click',event=>{
             if(!cbFunc){
                 cbFunc = setTimeout(()=>{
                     cbFunc=null;

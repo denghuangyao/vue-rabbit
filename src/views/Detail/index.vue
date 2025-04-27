@@ -5,15 +5,15 @@ import {useRoute} from "vue-router"
 import DetailHot from "./components/DetailHot.vue";
 import useCartStore from "@/store/cartStore"
 import type { Cart } from "@/types"
-let goodsData = reactive<any>({})
-let route = useRoute();
+const goodsData = reactive<any>({})
+const route = useRoute();
 const getDetail = async ()=>{
-  let { result }:any = await getDetailAPI(route.params.id);
+  const { result }:any = await getDetailAPI(route.params.id);
   result.categories.sort((a:any,b:any) => a.layer - b.layer);
   Object.assign(goodsData,result)
   // console.log("--getDetail-goodsData-",goodsData)
 }
-let skuObj:any = reactive({}),count = ref<number>(1);
+const skuObj:any = reactive({}),count = ref<number>(1);
 const getSkuData = (data:any)=>{
   // console.log("-getSkuData-data-",data);
   Object.assign(skuObj,data);
@@ -21,7 +21,7 @@ const getSkuData = (data:any)=>{
 const cartStore = useCartStore();
 const addCart = ()=>{
   if(skuObj.skuId){
-    let cart:Cart = {
+    const cart:Cart = {
       id:goodsData.id,
       name:goodsData.name,
       price:goodsData.price,
@@ -91,7 +91,7 @@ onMounted(()=>{
             </div>
             <div class="spec">
               <!-- 商品信息区 -->
-              <p class="g-name"> {{goodsData.name}} </p>
+              <p class="g-name" v-copy="goodsData.name"> {{goodsData.name}} </p>
               <p class="g-desc">{{goodsData.desc}} </p>
               <p class="g-price">
                 <span>{{goodsData.price}}</span>
