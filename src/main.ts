@@ -15,7 +15,9 @@ const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate);
 const app = createApp(App);
 app.use(componentPlugin)
-app.use(imgLazyPlugin)
+app.use(imgLazyPlugin,{
+    default:"loading"
+})
 app.use(router);
 app.use(pinia);/* 使用插件 */
 app.mount('#app')

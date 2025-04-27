@@ -15,18 +15,18 @@ const tabTypes = [
 ]
 // 订单列表
 const orderList = ref<any[]>([]);
-let total = ref(0);
-let reqParams = ref<orderQuery>({
+const total = ref(0);
+const reqParams = ref<orderQuery>({
     orderState:0,
     page:1,
     pageSize:2
 })
 const getOrderList = async ()=>{
-    let res:any = await getUserOrderAPI(reqParams.value);
+    const res = await getUserOrderAPI(reqParams.value);
     orderList.value = res.result.items;
-    total= res.result.counts;
+    total.value= res.result.counts;
 }
-const tabChange = (tabName:any)=>{
+const tabChange = (tabName:number)=>{
     console.log("-tabChange-",tabName)
     reqParams.value.orderState = tabName;
     reqParams.value.page = 1;
@@ -39,8 +39,8 @@ const pageChange = (pageNum:number)=>{
 }
 onMounted(()=>getOrderList())
 // 创建格式化函数
-const fomartPayState = (payState:any) => {
-    const stateMap:any = {
+const fomartPayState = (payState:string) => {
+    const stateMap = {
       1: '待付款',
       2: '待发货',
       3: '待收货',
@@ -50,7 +50,7 @@ const fomartPayState = (payState:any) => {
     }
     return stateMap[payState]
   }
-  const formatCountDown = (time:any)=>{
+  const formatCountDown = (time:number)=>{
     return time>=0?dayjs.unix(time).format("mm分ss秒"):"已超时";
   }
 </script>
