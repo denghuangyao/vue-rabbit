@@ -7,10 +7,10 @@ const route = useRoute();
 const orderInfo = ref({});
 //paycack?orderId=xx&payResult=`true|false`;
 const getOrder = async ()=>{
-    let {result} = await getOrderAPI(route.query.orderId);
+    const {result} = await getOrderAPI(route.query.orderId);
     orderInfo.value.payMoney = result.payMoney;
 }
-let isSuccess = computed(()=>route.query.payResult==='true')
+const isSuccess = computed(()=>route.query.payResult==='true')
 onMounted(()=>getOrder());
 </script>
 
@@ -27,7 +27,7 @@ onMounted(()=>getOrder());
         <p>支付方式：<span>支付宝</span></p>
         <p>支付金额：<span>¥{{orderInfo.payMoney?.toFixed(2)}}</span></p>
         <div class="btn">
-          <el-button type="primary" style="margin-right:20px">查看订单</el-button>
+          <el-button @click="$router.replace('/member/order')" type="primary" style="margin-right:20px">查看订单</el-button>
           <el-button @click="$router.replace('/')">进入首页</el-button>
         </div>
         <p class="alert">
